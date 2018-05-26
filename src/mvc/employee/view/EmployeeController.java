@@ -29,13 +29,13 @@ public class EmployeeController {
 	@FXML
 	private TableColumn<Employee, String> hireDateAsStrColumn;
 	@FXML
-	private TableColumn<Employee, String> jobIdColumn;
-	@FXML
 	private TableColumn<Employee, Double> salaryColumn;
 	@FXML
-	private TableColumn<Employee, Integer> managerIdColumn;
+	private TableColumn<Employee, String> departmentNameColumn;
 	@FXML
-	private TableColumn<Employee, Integer> departmentIdColumn;
+	private TableColumn<Employee, String> managerNameColumn;
+	@FXML
+	private TableColumn<Employee, String> jobTitleColumn;
 
 	// Label
 	@FXML
@@ -51,13 +51,13 @@ public class EmployeeController {
 	@FXML
 	private Label hireDateLabel;
 	@FXML
-	private Label jobIdLabel;
-	@FXML
 	private Label salaryLabel;
 	@FXML
-	private Label managerIdLabel;
+	private Label departmentNameLabel;
 	@FXML
-	private Label departmentIdLabel;
+	private Label managerNameLabel;
+	@FXML
+	private Label jobTitleLabel;
 
 	@FXML
 	private void initialize() {
@@ -68,11 +68,11 @@ public class EmployeeController {
 		emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 		phoneNameColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		hireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDateProperty());
-		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().jobIdProperty());
+		jobTitleColumn.setCellValueFactory(cellData -> cellData.getValue().jobTitleProperty());
 		salaryColumn.setCellValueFactory(cellData -> cellData.getValue().salaryProperty().asObject());
 
-		managerIdColumn.setCellValueFactory(cellData -> cellData.getValue().managerIdProperty().asObject());
-		departmentIdColumn.setCellValueFactory(cellData -> cellData.getValue().departmentIdProperty().asObject());
+		departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().departmentNameProperty());
+		managerNameColumn.setCellValueFactory(cellData -> cellData.getValue().managerNameProperty());
 
 		// ustaw wartości pól
 		refreshEmployee(null);
@@ -97,10 +97,10 @@ public class EmployeeController {
 			emailLabel.setText(emp.getEmail());
 			phoneNumberLabel.setText(emp.getPhoneNumber());
 			hireDateLabel.setText(emp.getHireDate().toString());
-			jobIdLabel.setText(emp.getJobId());
+			jobTitleLabel.setText(emp.getJobTitle());
 			salaryLabel.setText(Double.toString(emp.getSalary()));
-			managerIdLabel.setText(Integer.toString(emp.getManagerId()));
-			departmentIdLabel.setText(Integer.toString(emp.getDepartmentId()));
+			departmentNameLabel.setText(emp.getDepartmentName());
+			managerNameLabel.setText(emp.getManagerName());
 		} else {
 			employeeIdLabel.setText("");
 			firstNameLabel.setText("");
@@ -108,10 +108,10 @@ public class EmployeeController {
 			emailLabel.setText("");
 			phoneNumberLabel.setText("");
 			hireDateLabel.setText("");
-			jobIdLabel.setText("");
+			jobTitleLabel.setText("");
 			salaryLabel.setText("");
-			managerIdLabel.setText("");
-			departmentIdLabel.setText("");
+			departmentNameLabel.setText("");
+			managerNameLabel.setText("");
 		}
 	}
 

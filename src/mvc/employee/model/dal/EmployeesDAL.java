@@ -32,6 +32,21 @@ public class EmployeesDAL {
 		}
 		return employees;
 	}
+	
+	public ObservableList<Employee> getEmployeesByEmployeeId(int employeeId) {
+
+		ObservableList<Employee> employees = FXCollections.observableArrayList();
+		try (Statement statement = OraConn.getConnection().createStatement();) {
+			String query = "SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = " + employeeId;
+			ResultSet resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				employees.add(rs2Employee(resultSet));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return employees;
+	}
 
 	private Employee rs2Employee(ResultSet resultSet) {
 		Employee emp = null;
