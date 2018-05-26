@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import mvc.employee.model.dal.DepartmentsDAL;
+import mvc.employee.model.dal.EmployeesDAL;
 
 public class Employee {
 	private IntegerProperty employeeId;
@@ -25,6 +26,7 @@ public class Employee {
 	private IntegerProperty managerId;
 	private IntegerProperty departmentId;
 	private StringProperty departmentName;
+	private StringProperty managerName;
 
 	public Employee() {
 		employeeId = new SimpleIntegerProperty(0);
@@ -38,6 +40,7 @@ public class Employee {
 		managerId = new SimpleIntegerProperty(0);
 		departmentId = new SimpleIntegerProperty(0);
 		departmentName = new SimpleStringProperty("");
+		managerName = new SimpleStringProperty("");
 
 	}
 
@@ -166,20 +169,40 @@ public class Employee {
 		return this.departmentId;
 	}
 
-		
-	public StringProperty getDepartmentName() {
-		return departmentName;
+	public String getDepartmentName() {
+		return departmentName.get();
 	}
 
 	public void setDepartmentName(String departmentName) {
 		this.departmentName.set(departmentName);
 	}
-	
+
 	public StringProperty departmentNameProperty() {
 		DepartmentsDAL dept = new DepartmentsDAL();
 		ObservableList<Department> depList = dept.getDepartmentsByDepartmentId(this.getDepartmentId());
-		setDepartmentName(depList.get(0).getDepartmentName());
-		return this.getDepartmentName();
+		if (depList.size() == 1)
+			setDepartmentName(depList.get(0).getDepartmentName());
+		else
+			setDepartmentName(" ");
+		return this.departmentName;
+	}
+
+	public String getManagerName() {
+		return managerName.get();
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName.set(managerName);
+	}
+
+	public StringProperty managerNameProperty() {
+		EmployeesDAL emp = new EmployeesDAL();
+		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(employeeId.get());
+		if (empList.size() == 1)
+			setManagerName(empList.get(0).getLastName() + " " + empList.get(0).getFirstName());
+		else
+			setManagerName(" ");
+		return this.managerName;
 	}
 
 	@Override

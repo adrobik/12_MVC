@@ -28,7 +28,7 @@
                         <TableColumn fx:id="hireDateColumn" prefWidth="75.0" text="Data zatrudnienia" />
                         <TableColumn fx:id="jobIdColumn" prefWidth="75.0" text="Stanowisko" />
                         <TableColumn fx:id="salaryColumn" prefWidth="75.0" text="Wynagrodzenie" />
-                        <TableColumn fx:id="managerIdColumn" prefWidth="75.0" text="Id przełożonego" />
+                        <TableColumn fx:id="managerNameColumn" prefWidth="75.0" text="Przełożony" />
                         <TableColumn fx:id="departmentNameColumn" prefWidth="75.0" text="Nazwa działu" />
                     </columns>
                      <columnResizePolicy>
@@ -78,8 +78,8 @@
                         <Label fx:id="jobIdLabel" text="JobId" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label text="Wynagrodzenie" GridPane.rowIndex="7" />
                         <Label fx:id="salaryLabel" text="Salary" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Id przełożonego" GridPane.rowIndex="8" />
-                        <Label fx:id="managerIdLabel" text="ManagerId" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="Przełożony" GridPane.rowIndex="8" />
+                        <Label fx:id="managerNameLabel" text="ManagerName" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Label text="Nazwa działu" GridPane.rowIndex="9" />
                         <Label fx:id="departmentNameLabel" text="DepartmentName" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                      </children>
