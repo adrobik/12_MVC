@@ -21,36 +21,36 @@ public class DepartmentsDAL {
 
 	public ObservableList<Department> getDepartments() {
 
-		ObservableList<Department> jobs = FXCollections.observableArrayList();
+		ObservableList<Department> depts = FXCollections.observableArrayList();
 		try (Statement statement = OraConn.getConnection().createStatement();) {
 
 			String query = "SELECT * FROM DEPARTMENTS";
 			ResultSet resultSet = statement.executeQuery(query);
 
 			while (resultSet.next()) {
-				jobs.add(rs2Department(resultSet));
+				depts.add(rs2Department(resultSet));
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
-		return jobs;
+		return depts;
 	}
 
 	public ObservableList<Department> getDepartmentsByDepartmentId(int DepartmentId) {
 
-		ObservableList<Department> jobs = FXCollections.observableArrayList();
+		ObservableList<Department> depts = FXCollections.observableArrayList();
 		try (Statement statement = OraConn.getConnection().createStatement();) {
 
 			String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = " + DepartmentId;
 			ResultSet resultSet = statement.executeQuery(query);
 
 			while (resultSet.next()) {
-				jobs.add(rs2Department(resultSet));
+				depts.add(rs2Department(resultSet));
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
-		return jobs;
+		return depts;
 	}
 
 	private Department rs2Department(ResultSet resultSet) {
