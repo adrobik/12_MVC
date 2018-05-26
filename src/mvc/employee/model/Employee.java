@@ -13,6 +13,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import mvc.employee.model.dal.DepartmentsDAL;
 import mvc.employee.model.dal.EmployeesDAL;
+import mvc.employee.model.dal.JobsDAL;
 
 public class Employee {
 	private IntegerProperty employeeId;
@@ -27,6 +28,7 @@ public class Employee {
 	private IntegerProperty departmentId;
 	private StringProperty departmentName;
 	private StringProperty managerName;
+	private StringProperty jobTitle;
 
 	public Employee() {
 		employeeId = new SimpleIntegerProperty(0);
@@ -41,6 +43,7 @@ public class Employee {
 		departmentId = new SimpleIntegerProperty(0);
 		departmentName = new SimpleStringProperty("");
 		managerName = new SimpleStringProperty("");
+		jobTitle = new SimpleStringProperty("");
 
 	}
 
@@ -170,6 +173,12 @@ public class Employee {
 	}
 
 	public String getDepartmentName() {
+		DepartmentsDAL dept = new DepartmentsDAL();
+		ObservableList<Department> depList = dept.getDepartmentsByDepartmentId(this.getDepartmentId());
+		if (depList.size() == 1)
+			setDepartmentName(depList.get(0).getDepartmentName());
+		else
+			setDepartmentName(" ");
 		return departmentName.get();
 	}
 
@@ -188,6 +197,12 @@ public class Employee {
 	}
 
 	public String getManagerName() {
+		EmployeesDAL emp = new EmployeesDAL();
+		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(employeeId.get());
+		if (empList.size() == 1)
+			setManagerName(empList.get(0).getLastName() + " " + empList.get(0).getFirstName());
+		else
+			setManagerName(" ");
 		return managerName.get();
 	}
 
@@ -203,6 +218,30 @@ public class Employee {
 		else
 			setManagerName(" ");
 		return this.managerName;
+	}
+
+	public String getJobTitle() {
+		JobsDAL jobs = new JobsDAL();
+		ObservableList<Job> jobsList = jobs.getJobsByJobId(jobId.get());
+		if (jobsList.size() == 1)
+			setJobTitle(jobsList.get(0).getJobTitle());
+		else
+			setJobTitle(" ");
+		return jobTitle.get();
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle.set(jobTitle);
+	}
+
+	public StringProperty jobTitleProperty() {
+		JobsDAL jobs = new JobsDAL();
+		ObservableList<Job> jobsList = jobs.getJobsByJobId(jobId.get());
+		if (jobsList.size() == 1)
+			setJobTitle(jobsList.get(0).getJobTitle());
+		else
+			setJobTitle(" ");
+		return this.jobTitle;
 	}
 
 	@Override

@@ -29,15 +29,13 @@ public class EmployeeController {
 	@FXML
 	private TableColumn<Employee, String> hireDateAsStrColumn;
 	@FXML
-	private TableColumn<Employee, String> jobIdColumn;
-	@FXML
 	private TableColumn<Employee, Double> salaryColumn;
-	@FXML
-	private TableColumn<Employee, Integer> managerIdColumn;
 	@FXML
 	private TableColumn<Employee, String> departmentNameColumn;
 	@FXML
 	private TableColumn<Employee, String> managerNameColumn;
+	@FXML
+	private TableColumn<Employee, String> jobTitleColumn;
 
 	// Label
 	@FXML
@@ -53,15 +51,13 @@ public class EmployeeController {
 	@FXML
 	private Label hireDateLabel;
 	@FXML
-	private Label jobIdLabel;
-	@FXML
 	private Label salaryLabel;
-	@FXML
-	private Label managerIdLabel;
 	@FXML
 	private Label departmentNameLabel;
 	@FXML
 	private Label managerNameLabel;
+	@FXML
+	private Label jobTitleLabel;
 
 	@FXML
 	private void initialize() {
@@ -72,7 +68,7 @@ public class EmployeeController {
 		emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 		phoneNameColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
 		hireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDateProperty());
-		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().jobIdProperty());
+		jobTitleColumn.setCellValueFactory(cellData -> cellData.getValue().jobTitleProperty());
 		salaryColumn.setCellValueFactory(cellData -> cellData.getValue().salaryProperty().asObject());
 
 		departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().departmentNameProperty());
@@ -101,7 +97,7 @@ public class EmployeeController {
 			emailLabel.setText(emp.getEmail());
 			phoneNumberLabel.setText(emp.getPhoneNumber());
 			hireDateLabel.setText(emp.getHireDate().toString());
-			jobIdLabel.setText(emp.getJobId());
+			jobTitleLabel.setText(emp.getJobTitle());
 			salaryLabel.setText(Double.toString(emp.getSalary()));
 			departmentNameLabel.setText(emp.getDepartmentName());
 			managerNameLabel.setText(emp.getManagerName());
@@ -112,7 +108,7 @@ public class EmployeeController {
 			emailLabel.setText("");
 			phoneNumberLabel.setText("");
 			hireDateLabel.setText("");
-			jobIdLabel.setText("");
+			jobTitleLabel.setText("");
 			salaryLabel.setText("");
 			departmentNameLabel.setText("");
 			managerNameLabel.setText("");
