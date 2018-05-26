@@ -10,6 +10,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
+import mvc.employee.model.dal.DepartmentsDAL;
 
 public class Employee {
 	private IntegerProperty employeeId;
@@ -22,6 +24,7 @@ public class Employee {
 	private DoubleProperty salary;
 	private IntegerProperty managerId;
 	private IntegerProperty departmentId;
+	private StringProperty departmentName;
 
 	public Employee() {
 		employeeId = new SimpleIntegerProperty(0);
@@ -34,7 +37,8 @@ public class Employee {
 		salary = new SimpleDoubleProperty(0.0);
 		managerId = new SimpleIntegerProperty(0);
 		departmentId = new SimpleIntegerProperty(0);
-		
+		departmentName = new SimpleStringProperty("");
+
 	}
 
 	public Employee(int employeeId) {
@@ -160,6 +164,22 @@ public class Employee {
 
 	public IntegerProperty departmentIdProperty() {
 		return this.departmentId;
+	}
+
+		
+	public StringProperty getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName.set(departmentName);
+	}
+	
+	public StringProperty departmentNameProperty() {
+		DepartmentsDAL dept = new DepartmentsDAL();
+		ObservableList<Department> depList = dept.getDepartmentsByDepartmentId(this.getDepartmentId());
+		setDepartmentName(depList.get(0).getDepartmentName());
+		return this.getDepartmentName();
 	}
 
 	@Override

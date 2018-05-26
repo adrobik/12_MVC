@@ -36,6 +36,8 @@ public class EmployeeController {
 	private TableColumn<Employee, Integer> managerIdColumn;
 	@FXML
 	private TableColumn<Employee, Integer> departmentIdColumn;
+	@FXML
+	private TableColumn<Employee, String> departmentNameColumn;
 
 	// Label
 	@FXML
@@ -58,6 +60,8 @@ public class EmployeeController {
 	private Label managerIdLabel;
 	@FXML
 	private Label departmentIdLabel;
+	@FXML
+	private Label departmentNameLabel;
 
 	@FXML
 	private void initialize() {
@@ -72,7 +76,8 @@ public class EmployeeController {
 		salaryColumn.setCellValueFactory(cellData -> cellData.getValue().salaryProperty().asObject());
 
 		managerIdColumn.setCellValueFactory(cellData -> cellData.getValue().managerIdProperty().asObject());
-		departmentIdColumn.setCellValueFactory(cellData -> cellData.getValue().departmentIdProperty().asObject());
+//		departmentIdColumn.setCellValueFactory(cellData -> cellData.getValue().departmentIdProperty().asObject());
+		departmentNameColumn.setCellValueFactory(cellData -> cellData.getValue().departmentNameProperty());
 
 		// ustaw wartości pól
 		refreshEmployee(null);
@@ -100,7 +105,8 @@ public class EmployeeController {
 			jobIdLabel.setText(emp.getJobId());
 			salaryLabel.setText(Double.toString(emp.getSalary()));
 			managerIdLabel.setText(Integer.toString(emp.getManagerId()));
-			departmentIdLabel.setText(Integer.toString(emp.getDepartmentId()));
+//			departmentIdLabel.setText(Integer.toString(emp.getDepartmentId()));
+			departmentNameLabel.setText(emp.getDepartmentName().toString());
 		} else {
 			employeeIdLabel.setText("");
 			firstNameLabel.setText("");
@@ -111,7 +117,8 @@ public class EmployeeController {
 			jobIdLabel.setText("");
 			salaryLabel.setText("");
 			managerIdLabel.setText("");
-			departmentIdLabel.setText("");
+//			departmentIdLabel.setText("");
+			departmentNameLabel.setText("");
 		}
 	}
 
