@@ -1,13 +1,21 @@
 package mvc.employee.view;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import mvc.employee.Main;
 import mvc.employee.model.Employee;
+import mvc.employee.model.dal.EmployeesDAL;
 
 public class EmployeeController {
 
@@ -120,5 +128,27 @@ public class EmployeeController {
 		int selIdx = employeeTable.getSelectionModel().getSelectedIndex();
 		if (selIdx >= 0)
 			employeeTable.getItems().remove(selIdx);
+	}
+
+	@FXML
+	private void editEmployee() throws IOException {
+		Employee selEmp = employeeTable.getSelectionModel().getSelectedItem();
+		if (selEmp != null) {
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Edit");
+			stage.setResizable(false);
+			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/EmployeeEdit.fxml"));
+			AnchorPane fxmlLayout = fxmlLoader.load();
+			EmployeeEditController fxmlController = fxmlLoader.getController();
+
+			fxmlController.setEmployee(selEmp);
+			stage.setScene(new Scene(fxmlLayout));
+			stage.showAndWait();
+			setEmployees(new EmployeesDAL().getEmployees());
+			if (!employeeTable.getItems().isEmpty())
+				employeeTable.getSelectionModel().select(0);
+			// employeeTable.refresh();
+		}
 	}
 }

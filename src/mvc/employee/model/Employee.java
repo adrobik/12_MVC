@@ -198,7 +198,7 @@ public class Employee {
 
 	public String getManagerName() {
 		EmployeesDAL emp = new EmployeesDAL();
-		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(employeeId.get());
+		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(managerId.get());
 		if (empList.size() == 1)
 			setManagerName(empList.get(0).getLastName() + " " + empList.get(0).getFirstName());
 		else
@@ -212,7 +212,7 @@ public class Employee {
 
 	public StringProperty managerNameProperty() {
 		EmployeesDAL emp = new EmployeesDAL();
-		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(employeeId.get());
+		ObservableList<Employee> empList = emp.getEmployeesByEmployeeId(managerId.get());
 		if (empList.size() == 1)
 			setManagerName(empList.get(0).getLastName() + " " + empList.get(0).getFirstName());
 		else
@@ -246,7 +246,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return lastName + " " + firstName;
+		return lastName.getValue() + " " + firstName.getValue();
 	}
 
 }

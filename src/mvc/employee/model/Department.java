@@ -47,7 +47,8 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return String.valueOf(departmentId);
+//		return String.valueOf(departmentId);
+		return departmentName;
 	}
 
 }

@@ -59,8 +59,8 @@ public class Main extends Application {
 	}
 
 	private void primaryStage_Hiding(WindowEvent e) {
-		Optional<ButtonType> result = AlertBox.showAndWait(AlertType.CONFIRMATION, "Kończenie pracy",
-				"Czy chcesz zamknąć aplikację?");
+		Optional<ButtonType> result = AlertBox.showAndWait(AlertType.CONFIRMATION, "Konczenie pracy",
+				"Czy chcesz zamknac aplikacje?");
 		if (result.orElse(ButtonType.CANCEL) != ButtonType.OK)
 			e.consume();
 	}
