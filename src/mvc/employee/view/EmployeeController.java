@@ -148,7 +148,6 @@ public class EmployeeController {
 			setEmployees(new EmployeesDAL().getEmployees());
 			if (!employeeTable.getItems().isEmpty())
 				employeeTable.getSelectionModel().select(0);
-			// employeeTable.refresh();
 		}
 	}
 }
