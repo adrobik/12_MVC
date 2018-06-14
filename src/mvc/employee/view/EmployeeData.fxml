@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.employee.view.EmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.employee.view.EmployeeController">
    <children>
       <SplitPane dividerPositions="0.5551378446115288" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -39,7 +39,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="472.0">
                <children>
-                  <Label layoutX="14.0" layoutY="6.0" text="Pracownik" AnchorPane.leftAnchor="10.0">
+                  <Label layoutX="14.0" layoutY="6.0" text="Pracownik" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -84,10 +84,10 @@
                         <Label fx:id="departmentNameLabel" text="DepartmentName" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
-                  <ToolBar layoutX="194.0" layoutY="344.0" prefHeight="40.0" prefWidth="208.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                  <ToolBar layoutX="194.0" layoutY="344.0" prefHeight="40.0" prefWidth="167.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                     <items>
                       <Button mnemonicParsing="false" text="Wstaw" />
-                        <Button mnemonicParsing="false" text="Edytuj" />
+                        <Button mnemonicParsing="false" onAction="#editEmployee" text="Edytuj" />
                         <Button mnemonicParsing="false" onAction="#deleteEmployee" text="Usuń" />
                     </items>
                   </ToolBar>

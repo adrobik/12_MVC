@@ -1,8 +1,8 @@
 package mvc.employee.model.dal;
 
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +32,7 @@ public class EmployeesDAL {
 		}
 		return employees;
 	}
-	
+
 	public ObservableList<Employee> getEmployeesByEmployeeId(int employeeId) {
 
 		ObservableList<Employee> employees = FXCollections.observableArrayList();
@@ -68,6 +68,19 @@ public class EmployeesDAL {
 			this.ex = ex;
 		}
 		return emp;
+	}
+
+	public void updateEmployee(Employee emp) {
+		try (Statement statement = OraConn.getConnection().createStatement();) {
+			String query = "UPDATE EMPLOYEES SET " + "FIRST_NAME = '" + emp.getFirstName() + "', LAST_NAME = '"
+					+ emp.getLastName() + "', EMAIL = '" + emp.getEmail() + "', PHONE_NUMBER = '" + emp.getPhoneNumber()
+					+ "', HIRE_DATE = '" + emp.getHireDate() + "', JOB_ID = '" + emp.getJobId() + "', SALARY = "
+					+ emp.getSalary() + ", MANAGER_ID = '" + emp.getManagerId() + "', DEPARTMENT_ID = '"
+					+ emp.getDepartmentId() + "' WHERE EMPLOYEE_ID = " + emp.getEmployeeId();
+			statement.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
