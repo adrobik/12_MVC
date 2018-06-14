@@ -60,7 +60,6 @@ public class EmployeeInsertController {
 	@FXML
 	private void saveButtonAction() {
 		Employee emp = new Employee();
-//		emp.setEmployeeId(Integer.parseInt(employeeIdTextField.getText()));
 		emp.setFirstName(firstNameTextField.getText());
 		emp.setLastName(lastNameTextField.getText());
 		emp.setEmail(emailTextField.getText());
