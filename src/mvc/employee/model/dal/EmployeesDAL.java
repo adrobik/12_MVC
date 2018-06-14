@@ -75,8 +75,22 @@ public class EmployeesDAL {
 			String query = "UPDATE EMPLOYEES SET " + "FIRST_NAME = '" + emp.getFirstName() + "', LAST_NAME = '"
 					+ emp.getLastName() + "', EMAIL = '" + emp.getEmail() + "', PHONE_NUMBER = '" + emp.getPhoneNumber()
 					+ "', HIRE_DATE = '" + emp.getHireDate() + "', JOB_ID = '" + emp.getJobId() + "', SALARY = "
-					+ emp.getSalary() + ", MANAGER_ID = '" + emp.getManagerId() + "', DEPARTMENT_ID = '"
-					+ emp.getDepartmentId() + "' WHERE EMPLOYEE_ID = " + emp.getEmployeeId();
+					+ emp.getSalary() + ", MANAGER_ID = " + ((emp.getManagerId() != -1) ? emp.getManagerId() : "NULL")
+					+ ", DEPARTMENT_ID = '" + emp.getDepartmentId() + "' WHERE EMPLOYEE_ID = " + emp.getEmployeeId();
+			statement.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void insertEmployee(Employee emp) {
+		try (Statement statement = OraConn.getConnection().createStatement();) {
+			String query = "INSERT INTO EMPLOYEES (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, MANAGER_ID, DEPARTMENT_ID) "
+					+ "VALUES ((SELECT MAX(EMPLOYEE_ID) +1 FROM EMPLOYEES), '" + emp.getFirstName() + "', '" + emp.getLastName() + "', '" + emp.getEmail() + "', '"
+					+ emp.getPhoneNumber() + "', '" + emp.getHireDate() + "', '" + emp.getJobId() + "', "
+					+ emp.getSalary() + ", " + ((emp.getManagerId() != -1) ? emp.getManagerId() : "NULL") + ", "
+					+ emp.getDepartmentId() + ")";
+			System.err.println(query);
 			statement.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();

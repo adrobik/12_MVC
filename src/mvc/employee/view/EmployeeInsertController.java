@@ -13,7 +13,7 @@ import mvc.employee.model.dal.DepartmentsDAL;
 import mvc.employee.model.dal.EmployeesDAL;
 import mvc.employee.model.dal.JobsDAL;
 
-public class EmployeeEditController {
+public class EmployeeInsertController {
 
 	// Label
 	@FXML
@@ -45,40 +45,9 @@ public class EmployeeEditController {
 
 	@FXML
 	private void initialize() {
-		setEmployee(null);
-	}
-
-	public void setEmployee(Employee emp) {
-		if (emp != null) {
-			employeeIdTextField.setText(Integer.toString(emp.getEmployeeId()));
-			firstNameTextField.setText(emp.getFirstName());
-			lastNameTextField.setText(emp.getLastName());
-			emailTextField.setText(emp.getEmail());
-			phoneNumberTextField.setText(emp.getPhoneNumber());
-			hireDateDatePicker.setValue(emp.getHireDate());
-			jobTitleComboBox.setItems(new JobsDAL().getJobs());
-			jobTitleComboBox.setValue((Job) new JobsDAL().getJobsByJobId(emp.getJobId()).get(0));
-			salaryTextField.setText(Double.toString(emp.getSalary()));
-			departmentComboBox.setItems(new DepartmentsDAL().getDepartments());
-			departmentComboBox.setValue(
-					(Department) new DepartmentsDAL().getDepartmentsByDepartmentId(emp.getDepartmentId()).get(0));
-			managerComboBox.setItems(new EmployeesDAL().getEmployees());
-			if (new EmployeesDAL().getEmployeesByEmployeeId(emp.getManagerId()).size() > 0)
-				managerComboBox
-						.setValue((Employee) new EmployeesDAL().getEmployeesByEmployeeId(emp.getManagerId()).get(0));
-
-		} else {
-			employeeIdTextField.setText("");
-			firstNameTextField.setText("");
-			lastNameTextField.setText("");
-			emailTextField.setText("");
-			phoneNumberTextField.setText("");
-			hireDateDatePicker.setValue(null);
-			// jobTitleLabel.setText("");
-			salaryTextField.setText("");
-			// departmentNameLabel.setText("");
-			// managerNameLabel.setText("");
-		}
+		jobTitleComboBox.setItems(new JobsDAL().getJobs());
+		departmentComboBox.setItems(new DepartmentsDAL().getDepartments());
+		managerComboBox.setItems(new EmployeesDAL().getEmployees());
 		employeeIdTextField.setDisable(true);
 	}
 
@@ -91,7 +60,7 @@ public class EmployeeEditController {
 	@FXML
 	private void saveButtonAction() {
 		Employee emp = new Employee();
-		emp.setEmployeeId(Integer.parseInt(employeeIdTextField.getText()));
+//		emp.setEmployeeId(Integer.parseInt(employeeIdTextField.getText()));
 		emp.setFirstName(firstNameTextField.getText());
 		emp.setLastName(lastNameTextField.getText());
 		emp.setEmail(emailTextField.getText());
@@ -104,8 +73,7 @@ public class EmployeeEditController {
 			emp.setManagerId(-1);
 		else
 			emp.setManagerId(managerComboBox.getSelectionModel().getSelectedItem().getEmployeeId());
-
-		new EmployeesDAL().updateEmployee(emp);
+		new EmployeesDAL().insertEmployee(emp);
 		closeButtonAction();
 	}
 }
