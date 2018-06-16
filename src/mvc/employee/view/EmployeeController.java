@@ -150,4 +150,21 @@ public class EmployeeController {
 				employeeTable.getSelectionModel().select(0);
 		}
 	}
+
+	@FXML
+	private void insertEmployee() throws IOException {
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setTitle("Insert");
+		stage.setResizable(false);
+		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/EmployeeInsert.fxml"));
+		AnchorPane fxmlLayout = fxmlLoader.load();
+		EmployeeInsertController fxmlController = fxmlLoader.getController();
+
+		stage.setScene(new Scene(fxmlLayout));
+		stage.showAndWait();
+		setEmployees(new EmployeesDAL().getEmployees());
+		if (!employeeTable.getItems().isEmpty())
+			employeeTable.getSelectionModel().select(0);
+	}
 }
